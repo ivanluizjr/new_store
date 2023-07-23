@@ -1,0 +1,31 @@
+import 'package:new_store/app/core/dio_cliient/dio_failure.dart';
+import 'package:new_store/app/core/either.dart';
+import 'package:new_store/app/modules/products/data/datasources/products_datasource.dart';
+import 'package:new_store/app/modules/products/data/mappers/products_mapper.dart';
+import 'package:new_store/app/modules/products/domain/entities/products_entity.dart';
+import 'package:new_store/app/modules/products/domain/failures/products_failure.dart';
+import 'package:new_store/app/modules/products/domain/repositories/products_repository.dart';
+
+class ProductsRepositoryImpl implements IProductsRepository {
+  final IProductsDataSource productsDatasource;
+
+  ProductsRepositoryImpl({required this.productsDatasource});
+
+  @override
+  Future<Either<IProductsFailure, List<ProductsEntity>>> getProducts() async {
+    try {
+      final productsMap = await productsDatasource.getProducts();
+
+      final result = productsMap.map(ProductsMapper.fromMap).toList();
+
+      return Right(result);
+    } on DioFailure catch (error, stacTrace) {
+      return Left(
+        ProductsFailureInternet(
+          message: error.message,
+          stackTrace: stacTrace,
+        ),
+      );
+    }
+  }
+}
