@@ -16,7 +16,11 @@ class ProductsRepositoryImpl implements IProductsRepository {
     try {
       final productsMap = await productsDatasource.getProducts();
 
-      final result = productsMap.map(ProductsMapper.fromMap).toList();
+      final result = productsMap
+          .map(
+            (productMap) => ProductsMapper.fromMap(productMap),
+          )
+          .toList();
 
       return Right(result);
     } on DioFailure catch (error, stacTrace) {
