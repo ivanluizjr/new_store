@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_store/app/core/widgets/text_widget.dart';
 
 class SnackBarService {
   static void showError({
@@ -11,8 +12,8 @@ class SnackBarService {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            message,
+          TextWidget(
+            text: message,
             textAlign: TextAlign.center,
           )
         ],
@@ -30,8 +31,8 @@ class SnackBarService {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            message,
+          TextWidget(
+            text: message,
             textAlign: TextAlign.center,
           ),
         ],

@@ -1,7 +1,9 @@
+import 'package:new_store/app/core/utils/value_objects/currency_vo.dart';
+
 class ProductsEntity {
   final int id;
   final String title;
-  final double price;
+  final CurrencyVO price;
   final String description;
   final String category;
   final String image;
@@ -16,6 +18,21 @@ class ProductsEntity {
     required this.image,
     required this.rating,
   });
+
+  factory ProductsEntity.empty() {
+    return ProductsEntity(
+      id: 0,
+      title: '',
+      price: const CurrencyVO(0.0),
+      description: '',
+      category: '',
+      image: '',
+      rating: Rating(
+        rate: 0.0,
+        count: 0,
+      ),
+    );
+  }
 }
 
 class Rating {
@@ -29,7 +46,7 @@ class Rating {
 
   factory Rating.fromMap(Map<String, dynamic> map) {
     return Rating(
-      rate: map['rate'],
+      rate: (map['rate'] as num).toDouble(),
       count: map['count'],
     );
   }

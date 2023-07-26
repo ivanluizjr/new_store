@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:new_store/app/core/themes/app_colors.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final int maxLength;
@@ -93,39 +94,43 @@ class TextFieldWidget extends StatelessWidget {
     TextStyle? style,
     String? hintText,
     TextStyle? hintStyle,
+    Color? fillColor,
+    bool? filled = false,
+    EdgeInsetsGeometry? contentPadding,
+    InputBorder? border,
     Function(String)? onChanged,
   }) {
     final border = OutlineInputBorder(
       borderSide: BorderSide(
         color: colorBorder ?? Colors.grey,
-        width: widthBorder ?? 1.5,
+        width: widthBorder ?? 0.0,
+        style: BorderStyle.none,
       ),
-      borderRadius: BorderRadius.circular(
-        5.0,
-      ),
+      borderRadius: BorderRadius.circular(5.0),
     );
 
     return TextFieldWidget(
       controller: controller,
       enabled: enabled,
       textInputType: textInputType,
+      filled: true,
+      fillColor: fillColor,
       onChanged: onChanged,
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 8.0,
+      contentPadding: contentPadding,
+      prefixIcon: const Padding(
+        padding: EdgeInsets.only(
+          right: 20.0,
+          left: 19.50,
+        ),
+        child: Icon(
+          Icons.search,
+          size: 24.0,
+          color: AppColors.greyDark,
+        ),
       ),
-      suffixIcon: const Padding(
-          padding: EdgeInsets.only(
-            right: 10.0,
-            left: 4.0,
-          ),
-          child: Icon(
-            Icons.search,
-            size: 20.0,
-          )),
-      suffixIconConstraints: const BoxConstraints(
-        maxHeight: 20.0,
-        maxWidth: 34.0,
+      prefixIconConstraints: const BoxConstraints(
+        maxHeight: 25.0,
+        maxWidth: 60.0,
       ),
       border: border,
       enabledBorder: border,
@@ -136,12 +141,12 @@ class TextFieldWidget extends StatelessWidget {
             fontSize: 14.0,
             fontWeight: FontWeight.w400,
           ),
-      hintText: hintText ?? 'Busca...',
+      hintText: hintText ?? 'Search Anything',
       hintStyle: hintStyle ??
           GoogleFonts.poppins(
-            color: colorHintStyle ?? Colors.black,
-            fontSize: 10.0,
-            fontWeight: FontWeight.w300,
+            color: colorHintStyle ?? AppColors.greyDark.withOpacity(0.72),
+            fontSize: 16.0,
+            fontWeight: FontWeight.w200,
           ),
     );
   }

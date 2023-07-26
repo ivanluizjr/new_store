@@ -14,8 +14,8 @@ class _AppWidgetState extends State<AppWidget> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.dark,
         statusBarColor: Colors.white,
         systemNavigationBarColor: Colors.white,
         systemNavigationBarContrastEnforced: true,
@@ -28,6 +28,7 @@ class _AppWidgetState extends State<AppWidget> {
     return MaterialApp.router(
       title: 'New Store',
       themeMode: ThemeMode.light,
+      darkTheme: ThemeData.dark(),
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.white,
