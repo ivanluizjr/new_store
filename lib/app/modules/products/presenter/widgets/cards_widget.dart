@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_store/app/core/utils/value_objects/currency_vo.dart';
 import 'package:new_store/app/core/widgets/text_widget.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 import '../../../../core/themes/app_colors.dart';
 import '../../domain/entities/products_entity.dart';
@@ -15,6 +16,8 @@ class CardsWidget extends StatelessWidget {
   final Function()? onTap;
   final Function()? onTapFavorite;
   final int id;
+  final bool isFavorite;
+  final Widget? childFavorite;
 
   const CardsWidget({
     super.key,
@@ -26,6 +29,8 @@ class CardsWidget extends StatelessWidget {
     required this.onTap,
     required this.id,
     required this.onTapFavorite,
+    required this.isFavorite,
+    required this.childFavorite,
   });
 
   @override
@@ -47,16 +52,17 @@ class CardsWidget extends StatelessWidget {
                 children: [
                   if (image == null || image!.isEmpty)
                     const Placeholder(
-                      fallbackHeight: 121,
+                      fallbackHeight: 121.0,
                       fallbackWidth: 126.62,
                     )
                   else
                     Hero(
                       tag: id,
-                      child: Image.network(
-                        image!,
+                      child: FadeInImage.memoryNetwork(
+                        placeholder: kTransparentImage,
+                        image: image!,
                         width: 126.62,
-                        height: 121,
+                        height: 121.0,
                       ),
                     ),
                   const SizedBox(width: 10),
@@ -109,8 +115,7 @@ class CardsWidget extends StatelessWidget {
                               padding: const EdgeInsets.only(top: 10.0),
                               child: GestureDetector(
                                 onTap: onTapFavorite,
-                                child:
-                                    SvgPicture.asset('assets/svg/favorite.svg'),
+                                child: childFavorite,
                               ),
                             ),
                           ],

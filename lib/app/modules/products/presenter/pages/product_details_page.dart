@@ -15,6 +15,7 @@ class ProductDetailsPage extends StatefulWidget {
   final String description;
   final String category;
   final String image;
+  final bool isFavorite;
 
   final Rating rating;
 
@@ -27,6 +28,7 @@ class ProductDetailsPage extends StatefulWidget {
     required this.description,
     required this.category,
     required this.rating,
+    required this.isFavorite,
   });
 
   @override
@@ -50,7 +52,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               fontSize: 20,
               fontWeight: FontWeight.w600,
             ),
-            SvgPicture.asset('assets/svg/favorite.svg'),
+            SvgPicture.asset(
+              widget.isFavorite
+                  ? 'assets/svg/favorite_filled.svg'
+                  : 'assets/svg/favorite.svg',
+            ),
           ],
         ),
       ),

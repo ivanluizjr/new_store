@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_store/app/core/themes/app_colors.dart';
 import 'package:new_store/app/core/widgets/text_widget.dart';
 
 class SnackBarService {
@@ -7,7 +8,7 @@ class SnackBarService {
     required String message,
   }) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      duration: const Duration(seconds: 8),
+      duration: const Duration(seconds: 5),
       backgroundColor: Colors.redAccent,
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -26,7 +27,7 @@ class SnackBarService {
     required String message,
   }) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      duration: const Duration(seconds: 8),
+      duration: const Duration(seconds: 5),
       backgroundColor: Colors.greenAccent,
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -34,6 +35,27 @@ class SnackBarService {
           TextWidget(
             text: message,
             textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    ));
+  }
+
+  static void showNotice({
+    required BuildContext context,
+    required String message,
+  }) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      duration: const Duration(seconds: 5),
+      backgroundColor: Colors.orange,
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextWidget(
+            text: message,
+            textAlign: TextAlign.center,
+            colorText: AppColors.white,
+            fontWeight: FontWeight.w600,
           ),
         ],
       ),

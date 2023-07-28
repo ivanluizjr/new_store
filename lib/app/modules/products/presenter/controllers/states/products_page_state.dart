@@ -1,17 +1,30 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import '../../../domain/entities/products_entity.dart';
 
-abstract class IProductsPageState {}
+abstract class IProductsPageState {
+  final Map<int, bool> favoriteStatus;
 
-class ProductPageInitialState implements IProductsPageState {}
+  IProductsPageState(this.favoriteStatus);
+}
 
-class ProductPageLoadingState implements IProductsPageState {}
+class ProductPageInitialState implements IProductsPageState {
+  @override
+  Map<int, bool> get favoriteStatus => throw UnimplementedError();
+}
+
+class ProductPageLoadingState implements IProductsPageState {
+  @override
+  Map<int, bool> get favoriteStatus => throw UnimplementedError();
+}
 
 class ProductPageSuccessState implements IProductsPageState {
-  List<ProductsEntity> listProducts;
+  final List<ProductsEntity> listProducts;
+  @override
+  final Map<int, bool> favoriteStatus;
 
   ProductPageSuccessState({
     required this.listProducts,
+    required this.favoriteStatus,
   });
 }
 
@@ -23,4 +36,7 @@ class ProducPageFailureState implements IProductsPageState {
     required this.message,
     this.stackTrace,
   });
+
+  @override
+  Map<int, bool> get favoriteStatus => throw UnimplementedError();
 }

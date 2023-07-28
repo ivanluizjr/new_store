@@ -73,7 +73,29 @@ class _ProductsPageState extends State<ProductsPage> {
               fontSize: 20,
               fontWeight: FontWeight.w600,
             ),
-            SvgPicture.asset('assets/svg/favorite.svg'),
+            GestureDetector(
+                onTap: () {
+                  widget.productsPageController
+                      .getFavoriteProducts()
+                      .then((favoriteProducts) {
+                    if (favoriteProducts.isNotEmpty) {
+                      Modular.to.pushNamed(
+                        AppRoutes.favoritesPageRoute,
+                        arguments: {
+                          'favoriteProducts': favoriteProducts,
+                          'productsPageController':
+                              widget.productsPageController,
+                        },
+                      );
+                    } else {
+                      SnackBarService.showNotice(
+                        context: context,
+                        message: AppLocales.notice,
+                      );
+                    }
+                  });
+                },
+                child: SvgPicture.asset('assets/svg/favorite.svg')),
           ],
         ),
       ),
@@ -96,6 +118,8 @@ class _ProductsPageState extends State<ProductsPage> {
                     price: const CurrencyVO(0.0),
                     onTap: null,
                     onTapFavorite: null,
+                    isFavorite: false,
+                    childFavorite: Container(),
                   );
                 },
               ),
@@ -131,6 +155,8 @@ class _ProductsPageState extends State<ProductsPage> {
                     itemBuilder: (context, index) {
                       final products = widget
                           .productsPageController.listProductsEntity[index];
+                      final isFavorite =
+                          state.favoriteStatus[products.id] ?? false;
 
                       return CardsWidget(
                         id: products.id,
@@ -149,9 +175,19 @@ class _ProductsPageState extends State<ProductsPage> {
                                 'price': products.price,
                                 'category': products.category,
                                 'description': products.description,
+                                'isFavorite': isFavorite,
                               });
                         },
-                        onTapFavorite: () {},
+                        childFavorite: SvgPicture.asset(
+                          isFavorite
+                              ? 'assets/svg/favorite_filled.svg'
+                              : 'assets/svg/favorite.svg',
+                        ),
+                        onTapFavorite: () async {
+                          await widget.productsPageController
+                              .toggleFavoriteProduct(products);
+                        },
+                        isFavorite: isFavorite,
                       );
                     },
                   ),
