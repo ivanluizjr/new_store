@@ -41,6 +41,13 @@ Este projeto foi um desafio para construir um app do zero, onde o objetivo era d
   - Teste fiz os teste das camadas principais que envolve nossa regra de negócio, testando nosso usecase, nosso repository implementação 
   e nosso datasource implementação.
 
+  - Resumindo o app, ele é composto de uma tela principal com lista de produtos, uma tela de detalhes dos produtos e uma tela com os 
+  produtos que são favoritos pelo usuário. Na tela principal temos um filtro da lista de produtos em tempo real, não fazendo diferença 
+  entre letras maiúsculas ou minúsculas para pesquisa, ao navegar para tela de detalhe por exemplo e voltar a pesquisa não é apagada, a 
+  lista de produtos só recarrega novamente quando o usuário apaga a pesquisa atual. A tela de favoritos só é navegável caso existam 
+  produtos com favoritos, senão uma mensagem de aviso é exibida ao usuário de orientação e que não existe produtos favoritos naquele 
+  momento.
+
   - Para rodar o projeto vou deixar uma apk gerada para Android, mais se você tem conhecimento basta fazer um clone do projeto e rodar 
   ele pelo emulador android ou emulador ios em macOs.
 
@@ -53,9 +60,10 @@ Este projeto foi um desafio para construir um app do zero, onde o objetivo era d
 
  # :iphone: Layout do App
   
-  ![teste_app](https://github.com/ivanluizjr/payment_history/assets/41458938/dbc43414-fece-4dad-b9bc-267fb170193a)
+  
+ ![new_store](https://github.com/ivanluizjr/new_store/assets/41458938/c131d50c-7fa3-47c6-bca7-2773761541e7)
 
-  #
+ #
   
   ![FLutter-1](https://user-images.githubusercontent.com/41458938/161364495-d0dbe155-75f3-4a03-a58f-307d9212b8aa.png)
 
