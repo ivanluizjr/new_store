@@ -1,5 +1,5 @@
 import 'package:new_store/app/core/dio_cliient/dio_failure.dart';
-import 'package:new_store/app/core/either.dart';
+import 'package:new_store/app/core/widgets/either.dart';
 import 'package:new_store/app/modules/products/data/datasources/products_datasource.dart';
 import 'package:new_store/app/modules/products/data/mappers/products_mapper.dart';
 import 'package:new_store/app/modules/products/domain/entities/products_entity.dart';
@@ -12,7 +12,9 @@ class ProductsRepositoryImpl implements IProductsRepository {
   ProductsRepositoryImpl({required this.productsDatasource});
 
   @override
-  Future<Either<IProductsFailure, List<ProductsEntity>>> getProducts() async {
+  Future<Either<IProductsFailure, List<ProductsEntity>>> getProducts({
+    required List<ProductsEntity> productsEntity,
+  }) async {
     try {
       final productsMap = await productsDatasource.getProducts();
 

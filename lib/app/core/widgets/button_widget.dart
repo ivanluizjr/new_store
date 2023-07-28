@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:new_store/app/core/services/media_query_service.dart';
-import 'package:new_store/app/core/text_widget.dart';
+import 'package:new_store/app/core/widgets/text_widget.dart';
 
 class ButtonWidget extends StatelessWidget {
   final bool alignTextCenter;

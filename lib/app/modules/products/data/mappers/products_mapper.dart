@@ -1,3 +1,4 @@
+import 'package:new_store/app/core/utils/value_objects/currency_vo.dart';
 import 'package:new_store/app/modules/products/domain/entities/products_entity.dart';
 
 class ProductsMapper {
@@ -5,7 +6,9 @@ class ProductsMapper {
     return ProductsEntity(
       id: map['id'],
       title: map['title'],
-      price: map['price'],
+      price: CurrencyVO(
+        (map['price'] as num).toDouble(),
+      ),
       description: map['description'],
       category: map['category'],
       image: map['image'],
